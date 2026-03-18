@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Examurai</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/signin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">Examurai</div>
+        </div>
+    </nav>
+
+    <div class="signin-container">
+        <div class="signin-card">
+            <h2>Sign In</h2>
+            <p>Access your account to upload and bookmark papers</p>
+            
+            <div class="google-signin">
+                <button id="googleSignIn" class="google-btn">
+                    <img src="../assets/google-icon.png" alt="Google Icon">
+                    Sign in with Google
+                </button>
+            </div>
+
+            <div class="email-signin">
+                <h3>Or sign in with email</h3>
+                <form id="emailSignInForm">
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email address" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    <button type="submit" class="signin-btn">Sign In</button>
+                </form>
+            </div>
+
+            <div class="terms">
+                <p>By signing in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/signin.js"></script>
+</body>
+</html>
+
+<style>
+.grid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.signin-container, .navbar, .signin-card {
+  position: relative;
+  z-index: 1;
+}
+</style> 

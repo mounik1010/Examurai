@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Question Paper - Examurai</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/upload.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --primary-color: #7c3aed;
+        --secondary-color: #a78bfa;
+        --accent-color: #c4b5fd;
+        --hover-color: #6d28d9;
+        --gradient-bg: linear-gradient(135deg, #ede9fe 0%, #c7d2fe 100%);
+        --card-gradient: linear-gradient(120deg, #a78bfa 0%, #7c3aed 100%);
+    }
+    body {
+        background: var(--gradient-bg);
+        font-family: 'Poppins', sans-serif;
+    }
+    .upload-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 2rem;
+        background: transparent;
+        margin-top: 80px;
+    }
+    .upload-card {
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(124,58,237,0.18), 0 1.5px 6px rgba(124,58,237,0.08);
+        padding: 2.5rem 2rem 2rem 2rem;
+        max-width: 500px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        animation: cardFadeIn 1s cubic-bezier(.4,0,.2,1);
+    }
+    .upload-card::before {
+        content: '';
+        position: absolute;
+        top: -40%;
+        left: -40%;
+        width: 180%;
+        height: 180%;
+        background: linear-gradient(120deg, #a78bfa 0%, #7c3aed 100%);
+        opacity: 0.13;
+        z-index: 0;
+        border-radius: 50%;
+        animation: gradientMove 8s linear infinite alternate;
+    }
+    @keyframes gradientMove {
+        0% { transform: scale(1) translate(0,0); }
+        100% { transform: scale(1.1) translate(10px, 20px); }
+    }
+    @keyframes cardFadeIn {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .upload-card h2 {
+        color: #7c3aed;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+    .upload-card p {
+        color: #6d28d9;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    .upload-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        z-index: 1;
+        position: relative;
+    }
+    .form-group label {
+        font-weight: 500;
+        color: #7c3aed;
+        margin-bottom: 0.2rem;
+        letter-spacing: 0.2px;
+    }
+    .form-group input, .form-group select {
+        padding: 0.85rem 1rem;
+        border: 1.5px solid #a78bfa;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: #f5f3ff;
+        color: #4b2995;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 1.5px 6px rgba(124,58,237,0.04);
+    }
+    .form-group input:focus, .form-group select:focus {
+        outline: none;
+        border-color: #7c3aed;
+        box-shadow: 0 0 0 2px #a78bfa44;
+    }
+    .file-upload {
+        position: relative;
+        border: 2px dashed #a78bfa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        background: #f3e8ff;
+        transition: border-color 0.3s, background 0.3s;
+    }
+    .file-upload:hover {
+        border-color: #7c3aed;
+        background: #ede9fe;
+    }
+    .file-info span {
+        color: #7c3aed;
+        font-weight: 500;
+    }
+    .file-info small {
+        color: #6d28d9;
+    }
+    .upload-btn {
+        background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(124,58,237,0.13);
+        margin-top: 1rem;
+        letter-spacing: 0.5px;
+        transition: background 0.3s, box-shadow 0.2s, transform 0.2s;
+    }
+    .upload-btn:hover {
+        background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+        box-shadow: 0 4px 16px rgba(124,58,237,0.18);
+        transform: translateY(-2px) scale(1.03);
+    }
+    @media (max-width: 600px) {
+        .upload-container { padding: 1rem; margin-top: 60px; }
+        .upload-card { padding: 1.2rem; }
+        .form-group input, .form-group select { font-size: 16px; }
+    }
+    .contributions-container {
+        max-width: 900px;
+        margin: 2rem auto 2rem auto;
+        background: #f5f7fb;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(66, 99, 235, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+        padding: 2.5rem 2rem 2rem 2rem;
+    }
+    .contributions-container h2 {
+        color: #3b5bdb;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+    .contribution-item.paper-card {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 2px 12px rgba(66,99,235,0.09), 0 1.5px 6px rgba(0,0,0,0.04);
+        border: 1px solid #a5b4fc;
+        margin-bottom: 1.5rem;
+        padding: 1.2rem 1rem;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .contribution-item.paper-card:hover {
+        box-shadow: 0 6px 24px rgba(66,99,235,0.18), 0 2px 8px rgba(0,0,0,0.06);
+        transform: translateY(-2px) scale(1.012);
+    }
+    .contribution-item .paper-title {
+        color: #3b5bdb;
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+    .contribution-item .paper-meta {
+        color: #7b88a8;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .contribution-item .paper-actions {
+        display: flex;
+        gap: 1rem;
+    }
+    .contribution-item .download-btn {
+        background: linear-gradient(90deg, #3b5bdb 0%, #4263eb 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 1.5px 6px rgba(66,99,235,0.13);
+        transition: background 0.2s, color 0.2s;
+    }
+    .contribution-item .download-btn:hover {
+        background: linear-gradient(90deg, #1c3486 0%, #3b5bdb 100%);
+    }
+    .contributions-container .no-contributions {
+        color: #7b88a8;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .contributions-container .no-contributions i {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #a5b4fc;
+    }
+    .contributions-container .upload-btn {
+        background: linear-gradient(90deg, #3b5bdb 0%, #4263eb 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 1rem;
+        box-shadow: 0 1.5px 6px rgba(66,99,235,0.13);
+        transition: background 0.2s, color 0.2s;
+    }
+    .contributions-container .upload-btn:hover {
+        background: linear-gradient(90deg, #1c3486 0%, #3b5bdb 100%);
+    }
+    .contributions-divider {
+        width: 100%;
+        max-width: 900px;
+        margin: 2.5rem auto 0.5rem auto;
+        border-bottom: 1.5px solid #a5b4fc;
+    }
+    @media (max-width: 600px) {
+        .contributions-container { padding: 1rem; }
+        .contribution-item.paper-card { padding: 1rem 0.7rem; }
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo" onclick="window.location.href='../index.html'" style="cursor: pointer;">Examurai</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="account.html">Account</a>
+                <a href="upload.html" class="active">Contributions</a>
+                <a href="bookmarks.html">Bookmarks</a>
+                <a href="filters.html">Filter</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="upload-container">
+        <div class="upload-card">
+            <h2>Upload Question Paper</h2>
+            <p>Share your question papers with the community</p>
+
+            <form id="uploadForm" class="upload-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="college">College Name</label>
+                    <select id="college" required>
+                        <option value="">Select College</option>
+                        <option value="JNTU Hyderabad">JNTU Hyderabad</option>
+                        <option value="JNTU Anantapur">JNTU Anantapur</option>
+                        <option value="JNTU Kakinada">JNTU Kakinada</option>
+                        <option value="Osmania University">Osmania University</option>
+                        <option value="Vasavi College">Vasavi College</option>
+                        <option value="MVSR College">MVSR College</option>
+                        <option value="CBIT">CBIT</option>
+                        <option value="GNIT">GNIT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="branch">Branch</label>
+                    <select id="branch" required>
+                        <option value="">Select Branch</option>
+                        <option value="Computer Science Engineering">Computer Science Engineering</option>
+                        <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                        <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Chemical Engineering">Chemical Engineering</option>
+                        <option value="Biotechnology Engineering">Biotechnology Engineering</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Metallurgical Engineering">Metallurgical Engineering</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <select id="semester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="Data Structures">Data Structures</option>
+                        <option value="Algorithms">Algorithms</option>
+                        <option value="Digital Electronics">Digital Electronics</option>
+                        <option value="Thermodynamics">Thermodynamics</option>
+                        <option value="Control Systems">Control Systems</option>
+                        <option value="Chemical Kinetics">Chemical Kinetics</option>
+                        <option value="Fluid Mechanics">Fluid Mechanics</option>
+                        <option value="Strength of Materials">Strength of Materials</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="paper">Question Paper (PDF)</label>
+                    <div class="file-upload">
+                        <input type="file" id="paper" accept=".pdf" required>
+                        <div class="file-info">
+                            <span>Choose a file</span>
+                            <small>Max size: 20MB</small>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="upload-btn">Upload Paper</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="contributions-container">
+        <h2>Your Contributions</h2>
+        <div id="contributionsList">Loading...</div>
+        <div id="noContributions" class="no-contributions" style="display:none;text-align:center;color:#7b88a8;margin-top:2rem;">
+            <i class="fas fa-upload" style="font-size:2rem;"></i>
+            <p>No contributions yet</p>
+            <button onclick="window.location.href='upload.html'" class="upload-btn">Upload Paper</button>
+        </div>
+    </div>
+
+    <div class="contributions-divider"></div>
+
+    <script src="../scripts/upload.js"></script>
+    <script>
+    async function loadUserContributions() {
+        const contributionsList = document.getElementById('contributionsList');
+        const noContributions = document.getElementById('noContributions');
+        try {
+            const response = await fetch('/api/contributions');
+            if (response.ok) {
+                const contributions = await response.json();
+                if (contributions.length === 0) {
+                    contributionsList.style.display = 'none';
+                    noContributions.style.display = 'block';
+                } else {
+                    contributionsList.style.display = 'block';
+                    noContributions.style.display = 'none';
+                    contributionsList.innerHTML = contributions.map(contribution => `
+                        <div class="contribution-item paper-card" style="margin-bottom: 1.5rem;">
+                            <div class="paper-title">${contribution.subject}</div>
+                            <div class="paper-meta">
+                                <span><b>Branch:</b> ${contribution.course}</span> |
+                                <span><b>Year:</b> ${contribution.year}</span> |
+                                <span><b>Semester:</b> ${contribution.semester}</span> |
+                                <span><b>Uploaded:</b> ${new Date(contribution.uploaded_at).toLocaleDateString()}</span>
+                            </div>
+                            <div class="paper-actions" style="margin-top: 0.5rem;">
+                                <button class="download-btn" onclick="window.location.href='/api/download/${contribution.id}'"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } else if (response.status === 401) {
+                window.location.href = 'signin.html';
+            } else {
+                contributionsList.innerHTML = '<div style="color:#e53e3e;">Error loading your contributions.</div>';
+            }
+        } catch {
+            contributionsList.innerHTML = '<div style="color:#e53e3e;">Error loading your contributions.</div>';
+        }
+    }
+    loadUserContributions();
+    </script>
+</body>
+</html> 

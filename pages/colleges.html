@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colleges - Examurai</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .colleges-container {
+            max-width: 1200px;
+            margin: 120px auto 0 auto;
+            padding: 2rem;
+        }
+        .colleges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .college-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 2rem 1rem 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        .college-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f7f7fa;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .college-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .college-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .college-count {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo" onclick="window.location.href='../index.html'" style="cursor: pointer;">Examurai</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="account.html">Account</a>
+                <a href="upload.html">Contributions</a>
+                <a href="bookmarks.html">Bookmarks</a>
+                <a href="filters.html">Filter</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="colleges-container">
+            <h1 style="text-align:center; color:var(--primary-color); margin-bottom:2rem;">Browse Colleges</h1>
+            <div class="interact-bar" style="max-width:900px;margin:0 auto 1rem auto;display:flex;gap:1rem;align-items:center;">
+                <select id="branchFilter" style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid #a5b4fc;">
+                    <option value="">All Branches</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Chemical">Chemical</option>
+                    <option value="Electronics and Communication">Electronics and Communication</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                </select>
+                <select id="semesterFilter" style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid #a5b4fc;">
+                    <option value="">All Semesters</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+                <select id="subjectFilter" style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid #a5b4fc;">
+                    <option value="">All Subjects</option>
+                    <option value="Data Structures">Data Structures</option>
+                    <option value="Algorithms">Algorithms</option>
+                    <option value="Digital Electronics">Digital Electronics</option>
+                    <option value="Thermodynamics">Thermodynamics</option>
+                    <option value="Control Systems">Control Systems</option>
+                    <option value="Chemical Kinetics">Chemical Kinetics</option>
+                    <option value="Fluid Mechanics">Fluid Mechanics</option>
+                    <option value="Strength of Materials">Strength of Materials</option>
+                </select>
+            </div>
+            <div class="colleges-grid" id="collegesGrid">
+                <!-- College cards will be loaded here -->
+            </div>
+        </div>
+    </main>
+    <script>
+    async function loadColleges() {
+        const grid = document.getElementById('collegesGrid');
+        grid.innerHTML = '<div>Loading...</div>';
+        try {
+            const res = await fetch('/api/colleges');
+            const colleges = await res.json();
+            if (!Array.isArray(colleges) || colleges.length === 0) {
+                grid.innerHTML = '<div>No colleges found.</div>';
+                return;
+            }
+            grid.innerHTML = colleges.map(college => {
+                const logoFile = college.college.toLowerCase().replace(/\s+/g, '') + '.png';
+                const logoPath = '../assets/colleges/' + logoFile;
+                return `
+                <div class="college-card" onclick="window.location.href='college.html?college=${encodeURIComponent(college.college)}'">
+                    <div class="college-logo">
+                        <img src="${logoPath}" alt="${college.college} Logo" onerror="this.onerror=null;this.src='../assets/colleges/placeholder.txt';">
+                    </div>
+                    <div class="college-name">${college.college}</div>
+                    <div class="college-count">${college.paper_count} papers available</div>
+                </div>
+                `;
+            }).join('');
+        } catch (err) {
+            grid.innerHTML = '<div>Error loading colleges.</div>';
+        }
+    }
+    loadColleges();
+    </script>
+</body>
+</html> 

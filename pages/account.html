@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Examurai</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/account.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo" onclick="window.location.href='../index.html'" style="cursor: pointer;">Examurai</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="account.html" class="active">Account</a>
+                <a href="upload.html">Contributions</a>
+                <a href="bookmarks.html">Bookmarks</a>
+                <a href="filters.html">Filter</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+        </div>
+    </nav>
+
+    <div class="account-container">
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-picture">
+                    <img id="profileImage" src="../assets/profile.png" alt="Profile Picture">
+                </div>
+                <div class="profile-info">
+                    <h2 id="userName">Sample Student</h2>
+                    <p id="userEmail">samplestudent@gmail.com</p>
+                    <p id="userJoined">Joined on 01 - 07 - 2025</p>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <i class="fas fa-bookmark"></i>
+                    <div class="stat-info">
+                        <h3>Bookmarks</h3>
+                        <p id="bookmarkCount">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-upload"></i>
+                    <div class="stat-info">
+                        <h3>Contributions</h3>
+                        <p id="contributionCount">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contributions-section">
+            <h2>My Contributions</h2>
+            <button onclick="window.location.href='upload.html'" class="upload-btn" style="margin-bottom: 16px;">Upload Paper</button>
+            <div id="contributionsList" class="contributions-list">
+                <!-- Contributions will be dynamically added here -->
+            </div>
+            
+            <div id="noContributions" class="no-contributions" style="display: none;">
+                <i class="fas fa-upload"></i>
+                <p>No contributions yet</p>
+                <button onclick="window.location.href='upload.html'" class="upload-btn">Upload Paper</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/account.js"></script>
+</body>
+</html> 

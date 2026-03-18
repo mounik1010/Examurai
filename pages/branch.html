@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Papers - Examurai</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fb 0%, #a5b4fc 100%);
+            font-family: 'Poppins', 'Inter', Arial, sans-serif;
+        }
+        .branch-header {
+            margin: 120px auto 2rem auto;
+            max-width: 900px;
+            text-align: center;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(66, 99, 235, 0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+            padding: 2rem 2.5rem;
+        }
+        .branch-header .branch-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #3b5bdb;
+        }
+        .branch-header .branch-count {
+            color: #7b88a8;
+            font-size: 1.15rem;
+            margin-top: 0.5rem;
+        }
+        .divider {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+            border-bottom: 1.5px solid #a5b4fc;
+        }
+        .interact-bar {
+            max-width:900px;
+            margin:0 auto 1.5rem auto;
+            display:flex;
+            gap:1rem;
+            align-items:center;
+            background: #e9edfb;
+            border-radius: 14px;
+            box-shadow: 0 1.5px 6px rgba(66,99,235,0.08);
+            padding: 1rem 1.5rem;
+        }
+        .interact-bar input, .interact-bar select {
+            border-radius: 8px;
+            border: 1px solid #a5b4fc;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            background: #fff;
+            transition: box-shadow 0.2s;
+        }
+        .interact-bar input:focus, .interact-bar select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #4263eb;
+        }
+        .papers-container {
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+            padding: 1rem;
+        }
+        .papers-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .paper-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(66,99,235,0.09), 0 1.5px 6px rgba(0,0,0,0.04);
+            padding: 1.5rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border: 1px solid #a5b4fc;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .paper-card:hover {
+            box-shadow: 0 6px 24px rgba(66,99,235,0.18), 0 2px 8px rgba(0,0,0,0.06);
+            transform: translateY(-2px) scale(1.012);
+        }
+        .paper-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #3b5bdb;
+            cursor: pointer;
+        }
+        .paper-meta {
+            color: #7b88a8;
+            font-size: 1rem;
+        }
+        .paper-actions {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .download-btn, .bookmark-btn {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+        .download-btn {
+            background: linear-gradient(90deg, #3b5bdb 0%, #4263eb 100%);
+            color: white;
+            box-shadow: 0 1.5px 6px rgba(66,99,235,0.13);
+        }
+        .download-btn:hover {
+            background: linear-gradient(90deg, #1c3486 0%, #3b5bdb 100%);
+        }
+        .bookmark-btn {
+            background: #f5f7fb;
+            color: #3b5bdb;
+            border: 1px solid #a5b4fc;
+        }
+        .bookmark-btn.bookmarked {
+            background: #4263eb;
+            color: white;
+        }
+        .bookmark-btn:hover {
+            background: #a5b4fc;
+            color: #3b5bdb;
+        }
+        #pagination button {
+            background: #e9edfb;
+            color: #3b5bdb;
+            border: 1px solid #a5b4fc;
+            border-radius: 8px;
+            padding: 0.4rem 1.2rem;
+            margin: 0 0.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        #pagination button:disabled {
+            background: #f5f7fb;
+            color: #a5b4fc;
+            cursor: not-allowed;
+        }
+        #toast {
+            font-family: 'Poppins', 'Inter', Arial, sans-serif;
+        }
+        @media (max-width: 600px) {
+            .branch-header, .interact-bar, .papers-container { padding: 1rem; }
+            .branch-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .interact-bar { flex-direction: column; gap: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo" onclick="window.location.href='../index.html'" style="cursor: pointer;">Examurai</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="account.html">Account</a>
+                <a href="upload.html">Contributions</a>
+                <a href="bookmarks.html">Bookmarks</a>
+                <a href="filters.html">Filter</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="branch-header" id="branchHeader">
+            <!-- Branch info will be loaded here -->
+        </div>
+        <div class="divider"></div>
+        <div class="interact-bar" style="max-width:900px;margin:0 auto 1rem auto;display:flex;gap:1rem;align-items:center;">
+            <select id="collegeFilter" style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid #a5b4fc;">
+                <option value="">All Colleges</option>
+                <option value="JNTUH">JNTUH</option>
+                <option value="JNTUA">JNTUA</option>
+                <option value="JNTUK">JNTUK</option>
+                <option value="OU">OU</option>
+                <option value="MVSR">MVSR</option>
+                <option value="Vasavi">Vasavi</option>
+                <option value="CBIT">CBIT</option>
+                <option value="GNIT">GNIT</option>
+            </select>
+            <select id="semesterFilter" style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid #a5b4fc;">
+                <option value="">All Semesters</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <select id="subjectFilter" style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid #a5b4fc;">
+                <option value="">All Subjects</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="Algorithms">Algorithms</option>
+                <option value="Digital Electronics">Digital Electronics</option>
+                <option value="Thermodynamics">Thermodynamics</option>
+                <option value="Control Systems">Control Systems</option>
+                <option value="Chemical Kinetics">Chemical Kinetics</option>
+                <option value="Fluid Mechanics">Fluid Mechanics</option>
+                <option value="Strength of Materials">Strength of Materials</option>
+            </select>
+        </div>
+        <div class="papers-container">
+            <div class="papers-list" id="papersList">
+                <!-- Papers will be loaded here -->
+            </div>
+            <div id="pagination" style="text-align:center;margin-top:1rem;"></div>
+        </div>
+        <div id="toast" style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:12px 24px;border-radius:8px;display:none;z-index:9999;font-size:1rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);"></div>
+    </main>
+    <script>
+    // Helper to get query param
+    function getQueryParam(name) {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(name);
+    }
+    const branch = getQueryParam('branch');
+    if (!branch) {
+        document.getElementById('branchHeader').innerHTML = '<h2>No branch specified.</h2>';
+        document.getElementById('papersList').innerHTML = '';
+    } else {
+        document.getElementById('branchHeader').innerHTML = `<div class="branch-name">${branch}</div><div class="branch-count" id="branchCount"></div>`;
+        loadBranchHeader(branch);
+        loadBranchPapers(branch);
+    }
+
+    async function loadBranchHeader(branch) {
+        // Get paper count for this branch
+        try {
+            const res = await fetch(`/api/branches/${encodeURIComponent(branch)}/papers`);
+            const papers = await res.json();
+            document.getElementById('branchCount').textContent = `${papers.length} papers available`;
+        } catch (err) {
+            document.getElementById('branchCount').textContent = '';
+        }
+    }
+
+    let allPapers = [];
+    let filteredPapers = [];
+    let currentPage = 1;
+    const pageSize = 8;
+    let userBookmarks = [];
+
+    async function loadBranchPapers(branch) {
+        try {
+            const res = await fetch(`/api/branches/${encodeURIComponent(branch)}/papers`);
+            const papers = await res.json();
+            renderPapers(papers);
+        } catch (err) {
+            document.getElementById('papersList').innerHTML = '<div style="color:#7c3aed;text-align:center;padding:2rem 0;">Failed to load papers.</div>';
+        }
+    }
+
+    function renderPapers(papers) {
+        console.log('Rendering papers:', papers); // DEBUG LOG
+        if (papers.length > 0) {
+            console.log('First paper object:', papers[0]); // DEBUG LOG
+        }
+        const papersList = document.getElementById('papersList');
+        if (!papers.length) {
+            papersList.innerHTML = '<div style="color:#7c3aed;text-align:center;padding:2rem 0;">No papers uploaded yet.</div>';
+            return;
+        }
+        papersList.innerHTML = papers.map(paper => {
+            const displayName = paper.name || paper.original_name || paper.filename || 'Untitled Paper';
+            return `
+            <div class="paper-card">
+                <div class="paper-title">${displayName}</div>
+                <div class="paper-meta"><strong>College:</strong> ${paper.college || '-'} &nbsp; <strong>Subject:</strong> ${paper.subject || '-'} &nbsp; <strong>Semester:</strong> ${paper.semester || '-'}</div>
+                <div class="paper-actions">
+                    <a href="/api/download/${paper.id || paper.paper_id}" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download</a>
+                    <button class="bookmark-btn" data-paper-id="${paper.id || paper.paper_id}"><i class="fas fa-bookmark"></i> Bookmark</button>
+                </div>
+            </div>
+            `;
+        }).join('');
+        papersList.querySelectorAll('.bookmark-btn').forEach(btn => {
+            btn.addEventListener('click', async function() {
+                const paperId = btn.getAttribute('data-paper-id');
+                try {
+                    const res = await fetch('/api/bookmarks', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ paperId })
+                    });
+                    if (res.ok) {
+                        btn.classList.toggle('bookmarked');
+                    } else {
+                        alert('Failed to bookmark.');
+                    }
+                } catch (e) {
+                    alert('Failed to bookmark.');
+                }
+            });
+        });
+    }
+
+    function setupPaperActions() {
+        const downloadButtons = document.querySelectorAll('.download-btn');
+        const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+
+        downloadButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Implement download functionality
+            });
+        });
+
+        bookmarkButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Implement bookmark functionality
+            });
+        });
+    }
+
+    function setupPagination() {
+        const totalPages = Math.ceil(filteredPapers.length / pageSize);
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.className = 'pagination-button';
+            button.addEventListener('click', () => {
+                currentPage = i;
+                displayPapers(filteredPapers.slice((currentPage - 1) * pageSize, currentPage * pageSize));
+            });
+            pagination.appendChild(button);
+        }
+    }
+
+    function renderPapers() {
+        const list = document.getElementById('papersList');
+        if (!filteredPapers.length) {
+            list.innerHTML = '<div>No papers found for this branch.</div>';
+            document.getElementById('pagination').innerHTML = '';
+            return;
+        }
+        // Pagination
+        const totalPages = Math.ceil(filteredPapers.length / pageSize);
+        const start = (currentPage-1)*pageSize;
+        const end = start+pageSize;
+        const pagePapers = filteredPapers.slice(start,end);
+        list.innerHTML = pagePapers.map((paper,i) => {
+            const isBookmarked = userBookmarks.map(b=>b.paper_id).includes(paper.id);
+            return `
+            <div class="paper-card">
+                <div class="paper-title" style="cursor:pointer;" onclick="toggleDetails(this)">${paper.subject}</div>
+                <div class="paper-meta details" style="display:none;">
+                    <span><b>College:</b> ${paper.college}</span> |
+                    <span><b>Semester:</b> ${paper.semester}</span> |
+                    <span><b>Uploaded:</b> ${new Date(paper.uploaded_at).toLocaleDateString()}</span>
+                </div>
+                <div class="paper-actions">
+                    <button class="download-btn" onclick="downloadPaper(${paper.id}, this)"><i class="fas fa-download"></i> Download</button>
+                    <button class="bookmark-btn${isBookmarked ? ' bookmarked' : ''}" onclick="bookmarkPaper(${paper.id}, this)"><i class="fas fa-bookmark"></i> ${isBookmarked ? 'Bookmarked' : 'Bookmark'}</button>
+                </div>
+            </div>
+            `;
+        }).join('');
+        // Pagination controls
+        let pagHtml = '';
+        if (totalPages > 1) {
+            pagHtml += `<button onclick="changePage(-1)" ${currentPage===1?'disabled':''}>Prev</button> `;
+            pagHtml += `Page ${currentPage} of ${totalPages} `;
+            pagHtml += `<button onclick="changePage(1)" ${currentPage===totalPages?'disabled':''}>Next</button>`;
+        }
+        document.getElementById('pagination').innerHTML = pagHtml;
+    }
+    </script>
+</body>
+</html>

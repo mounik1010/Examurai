@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Examurai</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-bg"></div>
+    <div class="admin-container">
+        <div id="loginSection" class="admin-login-section">
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <input type="text" id="adminUsername" placeholder="Username" required>
+                <input type="password" id="adminPassword" placeholder="Password" required>
+                <button type="submit" class="blue-btn">Login</button>
+            </form>
+            <div id="loginError" class="admin-error"></div>
+        </div>
+        <div id="panelSection" class="admin-panel-section" style="display:none;">
+            <h2>Uploaded Papers</h2>
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Paper Name</th>
+                            <th>User Email</th>
+                            <th>Uploaded At</th>
+                            <th>Download</th>
+                            <th>View</th>
+                            <th>Approve</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="papersTableBody">
+                        <!-- Papers will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="viewModal" class="admin-modal" style="display:none;">
+        <div class="admin-modal-content">
+            <span class="admin-modal-close" onclick="closeModal()">&times;</span>
+            <iframe id="pdfViewer" width="100%" height="600px" style="border:none;"></iframe>
+        </div>
+    </div>
+    <script src="../scripts/admin.js"></script>
+</body>
+</html> 

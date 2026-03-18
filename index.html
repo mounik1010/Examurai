@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examurai - Your Engineering Exam Resource Hub</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+                    <div class="nav-left">
+                <div class="logo" onclick="navigateToHome()" style="cursor: pointer;">Examurai</div>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="pages/account.html">Account</a>
+                    <a href="pages/upload.html">Contributions</a>
+                    <a href="pages/bookmarks.html">Bookmarks</a>
+                    <a href="pages/filters.html">Filter</a>
+                    <a href="pages/contact.html">Contact Us</a>
+                </div>
+            </div>
+            <button class="sign-in-btn" onclick="navigateToSignIn()">Sign In</button>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Your Ultimate Engineering Exam Resource Hub</h1>
+                <p>Access thousands of question papers, study materials, and expert guidance to excel in your engineering exams.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Question Papers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10</span>
+                        <span class="stat-label">Colleges</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="primary-btn" onclick="navigateToFilters()">Get Started</button>
+                    <button class="secondary-btn" onclick="navigateToContact()">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-eye"></i>
+                    <span>Preview</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-download"></i>
+                    <span>Download</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-filter"></i>
+                    <span>Filter</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>Why Choose Examurai?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Easy Search</h3>
+                    <p>Find question papers by college, branch, semester, or subject with our advanced search system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Quick Download</h3>
+                    <p>Download question papers instantly in PDF format for offline access and printing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>Save Bookmarks</h3>
+                    <p>Bookmark your favorite papers and access them anytime from your account.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Driven</h3>
+                    <p>Contribute papers and help fellow students succeed in their academic journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-content-section">
+            <h2>Understanding Engineering Exams</h2>
+            <div class="tech-content-grid">
+                <div class="tech-card">
+                    <h3>Paper Structure</h3>
+                    <p>Engineering question papers typically follow a structured format:</p>
+                    <ul>
+                        <li>Multiple sections with varying marks</li>
+                        <li>Mix of theoretical and numerical questions</li>
+                        <li>Choice-based questions in some sections</li>
+                        <li>Practical and application-based problems</li>
+                    </ul>
+                </div>
+                <div class="tech-card">
+                    <h3>Question Types</h3>
+                    <p>Common types of questions in engineering exams:</p>
+                    <ul>
+                        <li>Short answer questions (2-5 marks)</li>
+                        <li>Long answer questions (10-15 marks)</li>
+                        <li>Numerical problems with steps</li>
+                        <li>Case studies and applications</li>
+                    </ul>
+                </div>
+                <div class="tech-card">
+                    <h3>Exam Preparation Tips</h3>
+                    <p>Effective strategies for exam preparation:</p>
+                    <ul>
+                        <li>Understand the syllabus thoroughly</li>
+                        <li>Practice previous year papers</li>
+                        <li>Focus on key concepts and formulas</li>
+                        <li>Time management during exams</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="explore-section">
+            <h2>Explore Question Papers</h2>
+            
+            <div class="filter-section">
+                <h3>Browse by College</h3>
+                <div class="swipe-container">
+                    <div class="college-cards">
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/jntuh.png" alt="JNTU Hyderabad Logo">
+                            </div>
+                            <h3>JNTU Hyderabad</h3>
+                            <p>800+ Papers</p>
+                            <span class="verified-tag">Verified</span>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/jntua.png" alt="JNTU Anantapur Logo">
+                            </div>
+                            <h3>JNTU Anantapur</h3>
+                            <p>600+ Papers</p>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/jntuk.png" alt="JNTU Kakinada Logo">
+                            </div>
+                            <h3>JNTU Kakinada</h3>
+                            <p>550+ Papers</p>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/ou.png" alt="Osmania University Logo">
+                            </div>
+                            <h3>Osmania University</h3>
+                            <p>450+ Papers</p>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/vasavi.png" alt="Vasavi College Logo">
+                            </div>
+                            <h3>Vasavi College</h3>
+                            <p>350+ Papers</p>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/mvsr.png" alt="MVSR College Logo">
+                            </div>
+                            <h3>MVSR College</h3>
+                            <p>300+ Papers</p>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/cbit.png" alt="Chaitanya College Logo">
+                            </div>
+                            <h3>Chaitanya College</h3>
+                            <p>250+ Papers</p>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-logo">
+                                <img src="assets/colleges/gnit.png" alt="GNIIT College Logo">
+                            </div>
+                            <h3>GNIIT College</h3>
+                            <p>200+ Papers</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="filter-btn" onclick="window.location.href='pages/filters.html'">View All Colleges</button>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Browse by Branch</h3>
+                <div class="swipe-container">
+                    <div class="branch-cards">
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3>Computer Science Engineering</h3>
+                            <p>1200+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3>Electronics & Communication Engineering</h3>
+                            <p>1000+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Electrical & Electronics Engineering</h3>
+                            <p>800+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Mechanical Engineering</h3>
+                            <p>900+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Chemical Engineering</h3>
+                            <p>600+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Biotechnology Engineering</h3>
+                            <p>400+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3>Civil Engineering</h3>
+                            <p>700+ Papers</p>
+                        </div>
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3>Metallurgical Engineering</h3>
+                            <p>300+ Papers</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="filter-btn" onclick="window.location.href='pages/filters.html#branches'">View All Branches</button>
+            </div>
+        </section>
+
+        <section class="query-section">
+            <h3>Have a Question?</h3>
+            <input type="text" class="query-input" placeholder="Search for question papers...">
+            <textarea class="query-textarea" placeholder="Describe your query in detail..."></textarea>
+            <button class="submit-query">Submit Query</button>
+        </section>
+
+        <section class="social-section">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/examurai" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/examurai" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/examurai" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html> 

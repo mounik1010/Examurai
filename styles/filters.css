@@ -1,0 +1,313 @@
+.filters-container {
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+    background: linear-gradient(135deg, var(--accent-color) 0%, white 100%);
+}
+
+.filters-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.filters-header h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.search-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+}
+
+.view-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.view-options button {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    background: white;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-options button:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.view-options button.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.filters-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.filters-sidebar {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.filter-group {
+    margin-bottom: 2rem;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.filter-options label:hover {
+    color: var(--primary-color);
+}
+
+.filter-options input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-options input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.results-grid.list-view {
+    grid-template-columns: 1fr;
+}
+
+.college-card,
+.branch-card,
+.subject-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.college-card:hover,
+.branch-card:hover,
+.subject-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.college-card h3,
+.branch-card h3,
+.subject-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.college-card p,
+.branch-card p,
+.subject-card p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.verified-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.recent {
+    position: relative;
+}
+
+.recent::before {
+    content: "New";
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .filters-content {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-sidebar {
+        position: sticky;
+        top: 1rem;
+        z-index: 10;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Uploaded Papers Section */
+.uploaded-papers-section {
+    margin-top: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(138, 43, 226, 0.08);
+}
+
+.uploaded-papers-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.paper-card {
+    background: linear-gradient(135deg, #ede7f6 0%, #f3e8ff 100%);
+    border: 2px solid #a259ec;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.08);
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.paper-card:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+}
+
+.paper-info h3 {
+    color: #7c3aed;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper-info p {
+    color: #5f4b8b;
+    margin: 0.2rem 0;
+    font-size: 1rem;
+}
+
+.paper-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.download-btn, .bookmark-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.download-btn {
+    background: #a259ec;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(162, 89, 236, 0.08);
+    text-decoration: none;
+}
+.download-btn:hover {
+    background: #7c3aed;
+    color: #fff;
+}
+
+.bookmark-btn {
+    background: #ede7f6;
+    color: #7c3aed;
+    border: 2px solid #a259ec;
+}
+.bookmark-btn:hover, .bookmark-btn.bookmarked {
+    background: #a259ec;
+    color: #fff;
+    border-color: #7c3aed;
+}
+
+.loading, .error, .no-papers {
+    color: #7c3aed;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.uploaded-branch-papers-section,
+.uploaded-subject-papers-section {
+    margin-top: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(138, 43, 226, 0.08);
+} 

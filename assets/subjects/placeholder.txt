@@ -1,0 +1,11 @@
+This directory should contain the following subject background images:
+- data-structures.png
+- algorithms.png
+- digital-electronics.png
+- control-systems.png
+- thermodynamics.png
+- fluid-mechanics.png
+- strength-of-materials.png
+- chemical-kinetics.png
+
+Please replace these placeholder files with actual subject background images. 

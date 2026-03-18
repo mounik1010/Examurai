@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookmarks - Examurai</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/bookmarks.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo" onclick="window.location.href='../index.html'" style="cursor: pointer;">Examurai</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="account.html">Account</a>
+                <a href="upload.html">Contributions</a>
+                <a href="bookmarks.html" class="active">Bookmarks</a>
+                <a href="filters.html">Filter</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bookmarks-container">
+        <div class="bookmarks-header">
+            <h2>My Bookmarks</h2>
+            <p>Access your saved question papers</p>
+        </div>
+
+        <div id="bookmarksList" class="bookmarks-list">
+            <!-- Bookmarks will be dynamically added here -->
+        </div>
+
+        <div id="noBookmarks" class="no-bookmarks" style="display: none;">
+            <i class="fas fa-bookmark"></i>
+            <p>No Bookmarks added yet</p>
+            <button onclick="window.location.href='../index.html'" class="browse-btn">Browse Papers</button>
+        </div>
+    </div>
+
+    <script src="../scripts/bookmarks.js"></script>
+</body>
+</html> 

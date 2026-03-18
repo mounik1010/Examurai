@@ -1,0 +1,11 @@
+This directory should contain the following college logo images:
+- jntu-hyderabad.png
+- jntu-anantapur.png
+- jntu-kakinada.png
+- osmania-university.png
+- vasavi-college.png
+- mvsr-college.png
+- chaitanya-college.png
+- gniit-college.png
+
+Please replace these placeholder files with actual college logo images. 

@@ -1,10 +1,10 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Check if user is authenticated
-//     checkAuthStatus();
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is authenticated
+    checkAuthStatus();
     
-//     // Load user bookmarks
-//     loadUserBookmarks();
-// });
+    // Load user bookmarks
+    loadUserBookmarks();
+});
 
 async function checkAuthStatus() {
     try {
